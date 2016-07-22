@@ -1,7 +1,12 @@
-var casperjs = require("casper").create();
+var casper = require('casper').create();
+casper.start('http://casperjs.org/');
 
-casperjs.start("http://google.com", function () {
-    this.echo(this.getTitle());
+casper.then(function() {
+    this.echo('First Page: ' + this.getTitle());
 });
 
-casperjs.run();
+casper.thenOpen('http://phantomjs.org', function() {
+    this.echo('Second Page: ' + this.getTitle());
+});
+
+casper.run();

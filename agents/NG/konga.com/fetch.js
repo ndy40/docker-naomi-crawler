@@ -76,16 +76,14 @@ Agent.prototype.scrape = function (onComplete) {
     casperjs.start(this.url, function () {        
         this.wait(5000, function () {
             this.repeat(pages, function () {
-                this.scrollToBottom();
-                
-                this.waitForSelector(".catalog-box > .spinner-container[style*=none]:nth-of-type(1)", function () {
-                    this.scrollToBottom();
-                    this.wait(3000);
+                this.evaluate(function () {
+                    window.scrollBy(100, 7000);
                 });
+                this.wait(4000);
+            }).then(function () {
+                self.results = scrapeData();
             });
         });
-    }).then(function () {
-        self.results = scrapeData();
     });
 
     return this;
