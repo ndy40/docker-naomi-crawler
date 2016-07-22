@@ -2,9 +2,9 @@
 
 var require = patchRequire(require),
     fs  = require("fs"),
-    utility = require("../../../lib/utility"),
-    dataType = require("../../../lib/DataType"),
-    baseClass = require("../../../lib/Agent"),
+    utility = require(fs.workingDirectory + "/lib/utility"),
+    dataType = require(fs.workingDirectory + "/lib/DataType"),
+    baseClass = require(fs.workingDirectory + "/lib/Agent"),
     utils = require('utils'),
     Agent;
 

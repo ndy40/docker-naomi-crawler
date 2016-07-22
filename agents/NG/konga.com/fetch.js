@@ -24,12 +24,11 @@ Agent.prototype = agent;
  */
 Agent.prototype.init = function () {
     return {
-        viewportSize : {width: 1200, height: 600},
+        viewportSize : {width: 1200, height: 1240},
         waitTimeout : 15000,
         pageSettings: {
             loadPlugins: false,
-            loadImages : false,
-            userAgent : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+            loadImages : true
         },
         //BLock contents.
         onResourceRequested : function (casper, requestData, networkData) {
@@ -79,9 +78,9 @@ Agent.prototype.scrape = function (onComplete) {
                 this.evaluate(function () {
                     window.scrollBy(100, 7000);
                 });
-                this.wait(4000);
-            }).then(function () {
-                self.results = scrapeData();
+                this.wait(4000, function () {
+                    self.results = scrapeData();
+                });
             });
         });
     });

@@ -17,7 +17,7 @@ var require = patchRequire(require),
     buildAgentInstance;
 
 //change to crawler working directory
-fs.changeWorkingDirectory("/data");
+fs.changeWorkingDirectory("/data"); 
 
 helper = require(fs.absolute(".") + "/lib/utility");
 

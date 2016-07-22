@@ -37,12 +37,12 @@ RUN \
     mv /tools/slimerjs-$SLIMERJS_VERSION /tools/var/slimerjs && \
     rm -f /tools/slimerjs-$SLIMERJS_VERSION.zip && \
     ln -sf /tools/var/slimerjs/slimerjs /usr/bin/slimerjs && \
-    echo '#!/bin/bash\nxvfb-run /tools/var/casperjs/bin/casperjs --engine=slimerjs "$@"' >> /tools/var/casperjs/casperjs.sh && \
+    echo '#!/bin/bash\n/tools/var/casperjs/bin/casperjs "$@"' >> /tools/var/casperjs/casperjs.sh && \
     chmod 755 /tools/var/casperjs/casperjs.sh && \
-    ln -s /tools/var/casperjs/casperjs.sh /usr/bin/casperjs && \
+    ln -sf /tools/var/casperjs/casperjs.sh /usr/bin/casperjs && \
     apt-get autoremove  && \
     apt-get clean all
 
 
-# Default commands
+# Default commands - Xvfb :2 > /dev/null 2>&1 &\n export DISPLAY=:2\n 
 CMD ["/usr/bin/casperjs"]
